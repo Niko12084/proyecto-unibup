@@ -1,9 +1,7 @@
-import { IsEmail, IsNotEmpty, IsString, IsStrongPassword } from "class-validator";
-import { LoginInterface, TokenResponseInterface } from "../interfaces/auth.interface";
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-export class LoginDTO implements LoginInterface {
+export class LoginDTO {
     @IsNotEmpty()
-    @IsString()
     @IsEmail()
     correo: string;
 
@@ -12,6 +10,16 @@ export class LoginDTO implements LoginInterface {
     contrasena: string;
 }
 
-export class TokenResponseDTO implements TokenResponseInterface {
+export class TokenResponseDTO {
     access_token: string;
+}
+
+export class JwtPayload {
+    user: {
+        id: number;
+        nombre: string;
+        correo: string;
+        rol: 'admin' | 'usuario';
+        fecha_creacion: Date;
+    };
 }

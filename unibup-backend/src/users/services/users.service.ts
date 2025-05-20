@@ -3,7 +3,6 @@ import { DataSource } from 'typeorm';
 import * as bcrypt from "bcryptjs"
 import { FilterUsersDTO, RegisterUserDTO, UserIdDTO, UserPrimaryInfoDTO, UserResponseDTO } from '../dto/users.dto';
 
-
 @Injectable()
 export class UsersService {
     constructor(
@@ -12,23 +11,21 @@ export class UsersService {
 
     async getUsers(usersFilters: FilterUsersDTO): Promise<UserResponseDTO[] | UserPrimaryInfoDTO[]> {
         let selectFields = `
-            u.id AS id,
+            u.id_usuario AS id,
             u.nombre AS name,
-            u.apellido AS last_name
+            u.correo AS email
         `;
 
         if (!usersFilters.no_details) {
             selectFields += `,
-                u.correo AS email,
-                r.id AS role_id,
-                r.nombre AS role_name
+                u.rol AS role,
+                u.fecha_creacion AS created_at
             `;
         }
 
         const baseQuery = `
             SELECT ${selectFields}
-            FROM usuarios u 
-            JOIN roles r ON u.rol_id = r.id
+            FROM Usuarios u
         `;
 
         if (usersFilters.all_users) {
@@ -38,63 +35,77 @@ export class UsersService {
         const conditions = [];
         const values = [];
 
-        if (usersFilters.students) {
-            conditions.push('rol_id = ?');
-            values.push(2);
-        }
-
-        if (usersFilters.teachers) {
-            conditions.push('rol_id = ?');
-            values.push(1);
-        }
-
-        if (usersFilters.no_details) {
-
+        if (usersFilters.role) {
+            conditions.push('u.rol = ?');
+            values.push(usersFilters.role);
         }
 
         if (conditions.length === 0) {
-            conditions.push('rol_id = ?');
-            values.push(2);
+            return await this.dataSource.query(baseQuery);
         }
 
-        const query = `${baseQuery} WHERE ${conditions.join(' OR ')} `;
+        const query = `${baseQuery} WHERE ${conditions.join(' AND ')}`;
 
         return await this.dataSource.query(query, values);
     }
 
     async registrarUsuario(userInfo: RegisterUserDTO) {
-        const { id, nombre, apellido, correo, contrasena, rol_id, confirmar_contraseña } = userInfo;
+        const { nombre, correo, contrasena, confirmar_contraseña, rol } = userInfo;
 
-        if (!(contrasena === confirmar_contraseña)) throw new BadRequestException('Las contraseñas no coinciden');
-
+        if (!(contrasena === confirmar_contraseña)) {
+            throw new BadRequestException('Las contraseñas no coinciden');
+        }
 
         const usuarioExistente = await this.dataSource.query(
-            'SELECT * FROM usuarios WHERE correo = ? OR id = ? LIMIT 1',
-            [correo, id],
+            'SELECT * FROM Usuarios WHERE correo = ? LIMIT 1',
+            [correo],
         );
 
         if (usuarioExistente.length > 0) {
-            throw new BadRequestException('Este usuario ya se encuentra registrado');
+            throw new BadRequestException('Este correo ya se encuentra registrado');
         }
 
-        const hashedPassword = await bcrypt.hash(contrasena, 4);
+        const hashedPassword = await bcrypt.hash(contrasena, 10);
 
         await this.dataSource.query(
-            `INSERT INTO usuarios (id, nombre, apellido, correo, contrasena, rol_id)
-            VALUES (?, ?, ?, ?, ?, ?)`,
-            [id, nombre, apellido, correo, hashedPassword, rol_id ?? 2],
+            `INSERT INTO Usuarios (nombre, correo, contrasena, rol)
+            VALUES (?, ?, ?, ?)`,
+            [nombre, correo, hashedPassword, rol ?? 'usuario'],
         );
 
         return { message: 'Usuario registrado correctamente' };
     }
 
     async deleteUser(user: UserIdDTO) {
-        const result = await this.dataSource.query('DELETE FROM usuarios WHERE id = ?', [user.id]);
+        const result = await this.dataSource.query(
+            'DELETE FROM Usuarios WHERE id_usuario = ?',
+            [user.id]
+        );
 
         if (result.affectedRows === 0) {
             throw new NotFoundException('Usuario no encontrado');
         }
 
         return { message: 'Usuario eliminado correctamente' };
+    }
+
+    async getUserById(id: number) {
+        const user = await this.dataSource.query(
+            `SELECT 
+                id_usuario AS id,
+                nombre AS name,
+                correo AS email,
+                rol AS role,
+                fecha_creacion AS created_at
+            FROM Usuarios 
+            WHERE id_usuario = ?`,
+            [id]
+        );
+
+        if (user.length === 0) {
+            throw new NotFoundException('Usuario no encontrado');
+        }
+
+        return user[0];
     }
 }

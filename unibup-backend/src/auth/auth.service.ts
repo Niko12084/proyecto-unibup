@@ -16,45 +16,43 @@ export class AuthService {
 
     const usuario = await this.dataSource.query(`
         SELECT 
-          u.id,
-          u.nombre,
-          u.apellido,
-          u.correo,
-          u.contrasena,
-          u.rol_id,
-          r.nombre AS rol
-
-        FROM usuarios u 
-          JOIN roles r ON u.rol_id = r.id
-
+          id_usuario,
+          nombre,
+          correo,
+          contrasena,
+          rol,
+          fecha_creacion
+        FROM Usuarios
         WHERE correo = ? LIMIT 1
       `,
       [correo],
     );
 
-    if (!usuario.length) throw new UnauthorizedException('Usuario no encontrado');
+    if (!usuario.length) {
+      throw new UnauthorizedException('Usuario no encontrado');
+    }
 
     const user = usuario[0];
     const isMatch = await bcrypt.compare(contrasena, user.contrasena);
 
-    if (!isMatch) throw new UnauthorizedException('Contraseña incorrecta');
+    if (!isMatch) {
+      throw new UnauthorizedException('Contraseña incorrecta');
+    }
 
     return user;
   }
 
-
   async login(body: LoginDTO): Promise<TokenResponseDTO> {
-
     const user = await this.validateUser(body);
 
     const payload = {
-      id: user.id,
+      id: user.id_usuario,
       nombre: user.nombre,
-      apellido: user.apellido,
       correo: user.correo,
-      rol_id: user.rol_id,
       rol: user.rol,
+      fecha_creacion: user.fecha_creacion
     };
+
     const token = this.jwtService.sign({ user: payload });
 
     return { access_token: token };
