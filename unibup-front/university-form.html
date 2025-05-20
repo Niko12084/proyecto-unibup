@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Universidades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="university-form.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h1>Gestor <span>Universitario</span></h1>
+            </div>
+            <nav class="admin-nav">
+                <a href="universities-list.html" class="active"><i class="fas fa-edit"></i> Universidades</a>
+                <a href="#"><i class="fas fa-graduation-cap"></i> Carreras</a>
+                <a href="#"><i class="fas fa-users"></i> Estudiantes</a>
+            </nav>
+        </header>
+
+        <main class="admin-main">
+            <div class="form-container">
+                <h2><i class="fas fa-plus-circle"></i> FORMULARIO INGRESAR UNIVERSIDAD</h2>
+                
+                <div class="form-actions">
+                    <button id="deleteBtn" class="btn-danger">
+                        <i class="fas fa-trash-alt"></i> ELIMINAR
+                    </button>
+                    <button id="searchBtn" class="btn-secondary">
+                        <i class="fas fa-search"></i> CONSULTAR
+                    </button>
+                    <button id="newBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> REGISTRAR NUEVO
+                    </button>
+                </div>
+
+                <form id="universityForm" class="university-form">
+                    <div class="form-group">
+                        <label for="actionType">¿QUÉ DESEAS MODIFICAR?</label>
+                        <select id="actionType" class="form-control">
+                            <option value="">Seleccione una acción</option>
+                            <option value="new">Registrar nueva universidad</option>
+                            <option value="edit">Editar universidad existente</option>
+                            <option value="delete">Eliminar universidad</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="universityId">ID Universidad</label>
+                        <input type="text" id="universityId" class="form-control" placeholder="Ej: 8" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="universityName">Nombre universidad</label>
+                        <input type="text" id="universityName" class="form-control" placeholder="Ingrese el nombre completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="universityLocation">Ubicación</label>
+                        <input type="text" id="universityLocation" class="form-control" placeholder="Ciudad, País">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="universityRanking">Ranking</label>
+                        <select id="universityRanking" class="form-control">
+                            <option value="">Seleccione ranking</option>
+                            <option value="5">Top 5</option>
+                            <option value="10">Top 10</option>
+                            <option value="20">Top 20</option>
+                            <option value="50">Top 50</option>
+                            <option value="100+">Top 100+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-save"></i> GUARDAR CAMBIOS
+                        </button>
+                        <button type="reset" class="btn-reset">
+                            <i class="fas fa-eraser"></i> LIMPIAR FORMULARIO
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="results-container" id="resultsContainer">
+                <h3><i class="fas fa-list"></i> UNIVERSIDADES REGISTRADAS</h3>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar universidad...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="table-container">
+                    <table id="universitiesTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Ubicación</th>
+                                <th>Ranking</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Datos se llenarán con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para confirmar eliminación -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación</h3>
+            <p>¿Estás seguro que deseas eliminar esta universidad?</p>
+            <div class="modal-actions">
+                <button id="confirmDelete" class="btn-danger">Eliminar</button>
+                <button id="cancelDelete" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="university-form.js"></script>
+</body>
+</html>

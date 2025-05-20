@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: unipub_db
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    
+  backend:
+    command: npm run start:dev
+    build:
+      context: ./unibup-backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./unibup-backend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - PORT=3000
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=unipub_db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - JWT_SECRET=auth_secret_token_1$_WPD
+      - SECRET=auth_secret_token_1$_WPD_S_IO
+
+  frontend:
+    build:
+      context: ./unibup-front
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./unibup-front:/usr/share/nginx/html
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
+  backend:
+  frontend:

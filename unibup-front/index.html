@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIPUB - Tu Futuro Profesional</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo-container">
+            <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
+        </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="career-search.html"><i class="fas fa-home"></i> Carreras</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <form id="loginRedirectForm" action="login.html" method="get">
+                    <button type="submit" class="btn-login" id="loginBtn">
+                        <i class="fas fa-user"></i> Ingresar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main class="hero-content">
+        <div class="container">
+            <div class="hero-text">
+                <h2 class="hero-tagline"><span class="typed-text"></span></h2>
+                <h1 class="hero-title">Encuentra la <span>carrera ideal</span> para tu futuro</h1>
+                <p class="hero-subtitle">Compara entre diversas universidades, conoce los requisitos de admisión y toma la mejor decisión para tu futuro profesional</p>
+                                
+                <div class="search-results glass-effect" id="searchResults"></div>
+
+                <div class="cta-buttons">
+                    <a href="career-search.html" class="btn-primary pulse-effect">
+                        <i class="fas fa-compass"></i> Explorar carreras
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Carreras</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">120</div>
+                    <div class="stat-label">Universidades</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfacción</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="compareModal">
+        <div class="modal-content glass-effect">
+            <span class="close-modal">&times;</span>
+            <h3>Comparador de Universidades</h3>
+            <div class="comparison-container" id="comparisonContainer"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad Libre - Detalles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="university-detail.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header class="university-header">
+        
+        <div class="container">
+            
+            <div class="logo-container">
+                <div class="container">
+            <div class="logo-container">
+            <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
+
+                <h1>UNIVERSIDAD LIBRE</h1>
+
+                 <nav class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                </nav>
+
+                <nav class="university-nav">
+                <a href="#" onclick="window.location.href='index.html'; return false;">
+                <a href="#about"><i class="fas fa-info-circle"></i> Información</a>
+                <a href="#programs"><i class="fas fa-graduation-cap"></i> Programas</a>
+                <a href="#location"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contacto</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="university-main">
+        <!-- Sección del Mapa -->
+        <section class="map-section" id="location">
+            <div class="container">
+                <h2><i class="fas fa-map"></i> Ubicación de la Universidad</h2>
+                <div id="universityMap"></div>
+                <div class="location-info">
+                    <div class="location-card">
+                        <i class="fas fa-map-pin"></i>
+                        <h3>Sede Principal</h3>
+                        <p>Calle 8 #5-80, Bogotá, Colombia</p>
+                    </div>                  
+                    <div class="location-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Horario de atención</h3>
+                        <p>Lunes a Viernes: 7:00 am - 7:00 pm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Programas -->
+        <section class="programs-section" id="programs">
+            <div class="container">
+                <h2><i class="fas fa-book-open"></i> Oferta Académica</h2>
+                <div class="programs-filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="pregrado">Pregrado</button>
+                    <button class="filter-btn" data-filter="posgrado">Posgrado</button>
+                    <button class="filter-btn" data-filter="doctorado">Doctorado</button>
+                </div>
+                <div class="programs-grid">
+                    <!-- Programas se cargarán con JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Información -->
+        <section class="info-section" id="about">
+            <div class="container">
+                <h2><i class="fas fa-info-circle"></i> Más Información</h2>
+                <div class="info-content">
+                    <div class="info-card">
+                        <i class="fas fa-history"></i>
+                        <h3>Historia</h3>
+                        <p>Fundada en 1923, la Universidad Libre es una institución de educación superior de carácter privado, con sede principal en Bogotá y seccionales en varias ciudades del país.</p>
+                        <a href="#" class="more-link">Ver más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-medal"></i>
+                        <h3>Ranking y Acreditaciones</h3>
+                        <p>Ranking QS: Top 20 en Colombia. Acreditación Institucional de Alta Calidad por el Ministerio de Educación Nacional.</p>
+                        <a href="#" class="more-link">Ver más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-building"></i>
+                        <h3>Instalaciones</h3>
+                        <p>15 edificios, biblioteca con más de 100,000 volúmenes, laboratorios especializados, centros de investigación y amplias zonas deportivas.</p>
+                        <a href="#" class="more-link">Ver más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <h2><i class="fas fa-envelope"></i> Contacto</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p><strong>Teléfono:</strong> (601) 3821000</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p><strong>Email:</strong> info@unilibre.edu.co</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <p><strong>Sitio web:</strong> <a href="https://www.unilibre.edu.co" target="_blank">www.unilibre.edu.co</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <p><strong>Proceso de admisión:</strong> Abierto hasta el 15 de noviembre</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Solicita más información</h3>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Correo electrónico" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Teléfono">
+                            </div>
+                            <div class="form-group">
+                                <select required>
+                                    <option value="">Programa de interés</option>
+                                    <option>Medicina</option>
+                                    <option>Derecho</option>
+                                    <option>Ingeniería Civil</option>
+                                    <option>Psicología</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Mensaje" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Enviar solicitud <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="university-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/unilibre-logo-white.png" alt="Logo Universidad Libre">
+                    <p>Educación de calidad desde 1923</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces rápidos</h4>
+                    <ul>
+                        <li><a href="#">Admisiones</a></li>
+                        <li><a href="#">Becas</a></li>
+                        <li><a href="#">Investigación</a></li>
+                        <li><a href="#">Biblioteca</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Universidad Libre. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="university-detail.js"></script>
+</body>
+</html>

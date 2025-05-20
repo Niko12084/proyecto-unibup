@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Sistema de Gestión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-lock"></i>
+                <h1>Admin<span>Panel</span></h1>
+            </div>
+            <h2>Inicio de sesión</h2>
+            <p>Acceso exclusivo para administradores</p>
+        </div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">Correo Electrónico</label>
+                <div class="input-container">
+                    <i class="fas fa-envelope"></i>
+                    <input 
+                        type="email" 
+                        id="username" 
+                        placeholder="Ingresa tu correo" 
+                        required
+                    >
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <div class="input-container">
+                    <i class="fas fa-key"></i>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Ingresa tu contraseña" 
+                        required
+                    >
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i> Ingresar
+            </button>
+        </form>
+        
+        <div class="login-footer">
+            <p>¿Problemas para acceder? <a href="#">Contactar al soporte</a></p>
+        </div>
+    </div>
+
+    <script src="admin-login.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginForm = document.getElementById('loginForm');
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+    
+        // Mostrar/ocultar contraseña
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+    
+        // Manejar el login
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        correo: email,
+                        contrasena: password
+                    })
+                });
+    
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Error de autenticación');
+                }
+    
+                // Almacenar token y redirigir
+                localStorage.setItem('authToken', data.token);
+                window.location.replace('university-form.html'); // Cambiado a replace
+    
+            } catch (error) {
+                // Limpiar campos y mostrar error
+                loginForm.reset();
+                showErrorModal(error.message);
+            }
+        });
+    
+        function showErrorModal(message) {
+            const modal = document.createElement('div');
+            modal.className = 'error-modal';
+            modal.innerHTML = `
+                <div class="error-content">
+                    <h3>Error de autenticación</h3>
+                    <p>${message}</p>
+                    <button onclick="this.parentElement.parentElement.remove()">Aceptar</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+    });
+    </script>
+</body>
+</html>
