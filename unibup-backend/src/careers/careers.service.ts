@@ -85,7 +85,7 @@ export class CareersService {
         return this.getCareerById(career.id_carrera);
     }
 
-    async deleteCareer(id: number): Promise<void> {
+    async deleteCareer(id: number): Promise<{ message: string }> {
         const result = await this.dataSource.query(
             'DELETE FROM Carreras WHERE id_carrera = ?',
             [id]
@@ -94,5 +94,7 @@ export class CareersService {
         if (result.affectedRows === 0) {
             throw new NotFoundException('Carrera no encontrada');
         }
+
+        return { message: 'Carrera eliminada correctamente' };
     }
 } 

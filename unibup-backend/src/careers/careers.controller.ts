@@ -31,7 +31,7 @@ export class CareersController {
     }
 
     @Delete(':id')
-    async deleteCareer(@Param('id') id: number): Promise<void> {
+    async deleteCareer(@Param('id') id: number): Promise<{ message: string }> {
         return this.careersService.deleteCareer(id);
     }
 } 
