@@ -31,7 +31,7 @@ export class UniversitiesController {
     }
 
     @Delete(':id')
-    async deleteUniversity(@Param('id') id: number): Promise<void> {
+    async deleteUniversity(@Param('id') id: number): Promise<{ message: string }> {
         return this.universitiesService.deleteUniversity(id);
     }
 } 

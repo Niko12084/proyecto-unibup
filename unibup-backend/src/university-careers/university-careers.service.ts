@@ -166,7 +166,7 @@ export class UniversityCareersService {
         return this.getUniversityCareerById(relation.id);
     }
 
-    async deleteUniversityCareer(id: number): Promise<void> {
+    async deleteUniversityCareer(id: number): Promise<{ message: string }> {
         const result = await this.dataSource.query(
             'DELETE FROM UniversidadCarrera WHERE id = ?',
             [id]
@@ -175,5 +175,7 @@ export class UniversityCareersService {
         if (result.affectedRows === 0) {
             throw new NotFoundException('Relación universidad-carrera no encontrada');
         }
+
+        return { message: 'Relación universidad-carrera eliminada correctamente' };
     }
 } 

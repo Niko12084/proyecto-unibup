@@ -85,7 +85,7 @@ export class UniversitiesService {
         return this.getUniversityById(university.id_universidad);
     }
 
-    async deleteUniversity(id: number): Promise<void> {
+    async deleteUniversity(id: number): Promise<{ message: string }> {
         const result = await this.dataSource.query(
             'DELETE FROM Universidades WHERE id_universidad = ?',
             [id]
@@ -94,5 +94,7 @@ export class UniversitiesService {
         if (result.affectedRows === 0) {
             throw new NotFoundException('Universidad no encontrada');
         }
+
+        return { message: 'Universidad eliminada correctamente' };
     }
 } 

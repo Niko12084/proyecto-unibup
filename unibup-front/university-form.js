@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const API_URL = 'http://localhost:3000/api/universidades';
-    const token = localStorage.getItem('token');
+    const API_URL = 'http://localhost:3000/api/v1/universidades';
+    const token = localStorage.getItem('authToken');
 
     if (!token) {
         window.location.href = 'login.html';

@@ -11,11 +11,6 @@ export class UniversityCareersController {
         return this.universityCareersService.createUniversityCareer(relation);
     }
 
-    @Get()
-    async getUniversityCareers(@Query() filters: FilterUniversityCareersDTO): Promise<UniversityCareerResponseDTO[]> {
-        return this.universityCareersService.getUniversityCareers(filters);
-    }
-
     @Get(':id')
     async getUniversityCareerById(@Param('id') id: number): Promise<UniversityCareerResponseDTO> {
         return this.universityCareersService.getUniversityCareerById(id);
@@ -31,7 +26,7 @@ export class UniversityCareersController {
     }
 
     @Delete(':id')
-    async deleteUniversityCareer(@Param('id') id: number): Promise<void> {
+    async deleteUniversityCareer(@Param('id') id: number): Promise<{ message: string }> {
         return this.universityCareersService.deleteUniversityCareer(id);
     }
 } 
