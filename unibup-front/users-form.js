@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const API_URL = 'http://localhost:3000/api/users';
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-        window.location.href = 'login.html';
-        return;
-    }
 
     // Elementos del DOM
     const userForm = document.getElementById('userForm');
