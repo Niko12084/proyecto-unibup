@@ -527,3 +527,35 @@ body {
     width: auto;
     margin-right: 10px; 
     }
+
+   .imagen-derecha {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1000px; /* Ajusta según necesites */
+    max-width: 40%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+@media (max-width: 1200px) {
+    .imagen-derecha {
+        width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .imagen-derecha {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        max-width: 500px;
+        margin: 100px auto;
+        display: block;
+    }
+}

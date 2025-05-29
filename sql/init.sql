@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS UniversidadCarrera (
     FOREIGN KEY (id_universidad) REFERENCES Universidades(id_universidad) ON DELETE CASCADE,
     FOREIGN KEY (id_carrera) REFERENCES Carreras(id_carrera) ON DELETE CASCADE,
     UNIQUE KEY (id_universidad, id_carrera)
-);
+); --agregar universidad, duracion , costo y eliminar puntaje minimo
 
 -- Insertar usuario admin por defecto (contraseña: admin123)
 INSERT INTO Usuarios (nombre, correo, contrasena, rol) 

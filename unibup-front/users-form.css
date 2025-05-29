@@ -16,7 +16,7 @@ body {
 
 /* Header y navegación */
 .admin-header {
-    background-color: #2c3e50;
+    background-color: #4361ee;
     padding: 1rem 2rem;
     color: white;
 }
@@ -32,7 +32,7 @@ body {
 }
 
 .logo span {
-    color: #3498db;
+    color: white
 }
 
 .admin-nav {
@@ -51,7 +51,7 @@ body {
 
 .admin-nav a:hover,
 .admin-nav a.active {
-    background-color: #3498db;
+    background-color: #3a56d4;
 }
 
 /* Contenido principal */
@@ -212,4 +212,46 @@ th {
     justify-content: flex-end;
     gap: 1rem;
     margin-top: 1rem;
+}
+
+.btn-delete-confirm {
+  background-color: #f5f5f5;
+  color: #e74c3c;
+  border: none;
+  border-radius: 4px; 
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  height: 36px;
+}
+
+.btn-delete-confirm .confirm-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.btn-delete-confirm:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete-confirm:hover .btn-text {
+  transform: translateY(-30px);
+  opacity: 0;
+}
+
+.btn-delete-confirm:hover .confirm-text {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }

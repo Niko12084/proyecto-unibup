@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gestión de Universidades</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="university-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="university-form.css"/>
 </head>
 <body>
     <div class="admin-container">
@@ -16,43 +16,16 @@
             </div>
             <nav class="admin-nav">
                 <a href="universities-list.html" class="active"><i class="fas fa-edit"></i> Universidades</a>
-                <a href="#"><i class="fas fa-graduation-cap"></i> Carreras</a>
-                <a href="#"><i class="fas fa-users"></i> Estudiantes</a>
+                <a href="carrerasforms.html" class="active"><i class="fas fa-graduation-cap"></i> Carreras</a>
+                <a href="users-form.html" class="active"><i class="fas fa-users"></i> Usuarios</a>
+                <a href="index.html" class="active"><i class="fas fa-address-card"></i> Cerrar Sesión</a>
             </nav>
         </header>
 
         <main class="admin-main">
             <div class="form-container">
                 <h2><i class="fas fa-plus-circle"></i> FORMULARIO INGRESAR UNIVERSIDAD</h2>
-                
-                <div class="form-actions">
-                    <button id="deleteBtn" class="btn-danger">
-                        <i class="fas fa-trash-alt"></i> ELIMINAR
-                    </button>
-                    <button id="searchBtn" class="btn-secondary">
-                        <i class="fas fa-search"></i> CONSULTAR
-                    </button>
-                    <button id="newBtn" class="btn-primary">
-                        <i class="fas fa-plus"></i> REGISTRAR NUEVO
-                    </button>
-                </div>
-
                 <form id="universityForm" class="university-form">
-                    <div class="form-group">
-                        <label for="actionType">¿QUÉ DESEAS MODIFICAR?</label>
-                        <select id="actionType" class="form-control">
-                            <option value="">Seleccione una acción</option>
-                            <option value="new">Registrar nueva universidad</option>
-                            <option value="edit">Editar universidad existente</option>
-                            <option value="delete">Eliminar universidad</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="universityId">ID Universidad</label>
-                        <input type="text" id="universityId" class="form-control" placeholder="Ej: 8" disabled>
-                    </div>
-
                     <div class="form-group">
                         <label for="universityName">Nombre universidad</label>
                         <input type="text" id="universityName" class="form-control" placeholder="Ingrese el nombre completo" required>
@@ -65,14 +38,12 @@
 
                     <div class="form-group">
                         <label for="universityRanking">Ranking</label>
-                        <select id="universityRanking" class="form-control">
-                            <option value="">Seleccione ranking</option>
-                            <option value="5">Top 5</option>
-                            <option value="10">Top 10</option>
-                            <option value="20">Top 20</option>
-                            <option value="50">Top 50</option>
-                            <option value="100+">Top 100+</option>
-                        </select>
+                        <input type="number" id="universityRanking" class="form-control" placeholder="Ranking Nacional">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="universityURL">URL de la imagen</label>
+                        <input type="text" id="universityURL" class="form-control" placeholder="URL de la imagen">
                     </div>
 
                     <div class="form-actions">
