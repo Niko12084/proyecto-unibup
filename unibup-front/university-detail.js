@@ -7,20 +7,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const universityId = urlParams.get('id');
 
-    console.log(universityId)
-
     const response = await fetch("http://localhost:3000/api/v1/universities")
     const universities = await response.json();
 
     const university = universities.find(item => item.id_universidad === Number(universityId))
 
-    console.log(universities)
-
     const mapContainer = document.querySelector('.map-container')
 
     
     mapContainer.src = university?.map_url
-    console.log(mapContainer)
 
     const academicPrograms = [
         {
