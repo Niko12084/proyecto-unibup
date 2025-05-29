@@ -87,11 +87,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const userData = { name, email, role };
+        const userData = { name,  correo: email, rol: role };
         if (!isEdit) {
-            userData.password = password;
+            userData.contrasena = password;
+            userData.confirmar_contraseña = confirmPassword;
         } else if (password && password === confirmPassword) {
-            userData.password = password;
+            userData.contrasena = password;
+            userData.confirmar_contraseña = confirmPassword;
         }
 
         const url = isEdit ? `${API_URL}/${id}` : API_URL;
