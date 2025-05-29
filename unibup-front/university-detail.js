@@ -1,5 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function () {
     // Datos de ejemplo para los programas académicos
+
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    const universityId = urlParams.get('id');
+
+    console.log(universityId)
+
+    const response = await fetch("http://localhost:3000/api/v1/universities")
+    const universities = await response.json();
+
+    const university = universities.find(item => item.id_universidad === Number(universityId))
+
+    console.log(universities)
+
+    const mapContainer = document.querySelector('.map-container')
+
+    
+    mapContainer.src = university?.map_url
+    console.log(mapContainer)
+
     const academicPrograms = [
         {
             id: 1,
@@ -65,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+
+
     const universityMarker = L.marker([4.60971, -74.08175]).addTo(map)
         .bindPopup("<b>Universidad Libre</b><br>Sede Principal Bogotá")
         .openPopup();
@@ -73,14 +97,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
 
             filterButtons.forEach(btn => btn.classList.remove('active'));
 
             this.classList.add('active');
-            
+
             const filter = this.dataset.filter;
-            if(filter === 'all') {
+            if (filter === 'all') {
                 renderPrograms(academicPrograms);
             } else {
                 const filteredPrograms = academicPrograms.filter(program => program.type === filter);
@@ -92,12 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderPrograms(programs) {
         const programsGrid = document.querySelector('.programs-grid');
         programsGrid.innerHTML = '';
-        
-        if(programs.length === 0) {
+
+        if (programs.length === 0) {
             programsGrid.innerHTML = '<p class="no-programs">No hay programas disponibles en esta categoría</p>';
             return;
         }
-        
+
         programs.forEach(program => {
             const programCard = document.createElement('div');
             programCard.className = 'program-card fade-in';
@@ -114,12 +138,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.querySelectorAll('.university-nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             window.scrollTo({
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
@@ -128,25 +152,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const contactForm = document.querySelector('.contact-form form');
-    if(contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const nameInput = this.querySelector('input[type="text"]');
             const emailInput = this.querySelector('input[type="email"]');
             const programSelect = this.querySelector('select');
-            
-            if(!nameInput.value.trim()) {
+
+            if (!nameInput.value.trim()) {
                 showAlert('Por favor ingresa tu nombre completo', nameInput);
                 return;
             }
-            
-            if(!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
                 showAlert('Por favor ingresa un correo electrónico válido', emailInput);
                 return;
             }
-            
-            if(!programSelect.value) {
+
+            if (!programSelect.value) {
                 showAlert('Por favor selecciona un programa de interés', programSelect);
                 return;
             }
@@ -163,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showAlert(message, element) {
         alert(message);
-        if(element) element.focus();
+        if (element) element.focus();
     }
 
     function showSuccessMessage(message) {
@@ -173,23 +197,23 @@ document.addEventListener('DOMContentLoaded', function() {
             <i class="fas fa-check-circle"></i>
             <p>${message}</p>
         `;
-        
+
         const form = document.querySelector('.contact-form form');
         form.parentNode.insertBefore(successDiv, form.nextSibling);
-        
+
         setTimeout(() => {
             successDiv.classList.add('fade-out');
             setTimeout(() => successDiv.remove(), 500);
         }, 5000);
     }
-        const homelink = document.getElementById('homelink');
-            if (homelink) {
-            homelink.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                window.location.href = 'index.html';
+    const homelink = document.getElementById('homelink');
+    if (homelink) {
+        homelink.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
         });
     }
-    
+
 
 
     const style = document.createElement('style');
@@ -225,6 +249,6 @@ document.addEventListener('DOMContentLoaded', function() {
             to { opacity: 0; }
         }
     `;
-    
+
     document.head.appendChild(style);
 });

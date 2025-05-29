@@ -16,6 +16,10 @@ export class CreateUniversityDTO {
     @IsOptional()
     @IsUrl()
     imagen_url?: string;
+
+    @IsNotEmpty()
+    @IsUrl()
+    map_url: string;
 }
 
 export class UpdateUniversityDTO extends CreateUniversityDTO {

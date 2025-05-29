@@ -10,9 +10,9 @@ export class UniversitiesService {
 
     async createUniversity(university: CreateUniversityDTO): Promise<UniversityResponseDTO> {
         const result = await this.dataSource.query(
-            `INSERT INTO Universidades (nombre, ubicacion, ranking, imagen_url)
-            VALUES (?, ?, ?, ?)`,
-            [university.nombre, university.ubicacion, university.ranking, university.imagen_url]
+            `INSERT INTO Universidades (nombre, ubicacion, ranking, imagen_url, map_url)
+            VALUES (?, ?, ?, ?, ?)`,
+            [university.nombre, university.ubicacion, university.ranking, university.imagen_url, university.map_url]
         );
 
         return this.getUniversityById(result.insertId);
@@ -26,7 +26,8 @@ export class UniversitiesService {
                 ubicacion,
                 ranking,
                 imagen_url,
-                fecha_creacion
+                fecha_creacion,
+                map_url
             FROM Universidades
             WHERE 1=1
         `;

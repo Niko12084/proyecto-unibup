@@ -115,7 +115,7 @@ export class UniversityCareersService {
             FROM UniversidadCarrera uc
             JOIN Universidades u ON uc.id_universidad = u.id_universidad
             JOIN Carreras c ON uc.id_carrera = c.id_carrera
-            WHERE uc.id = ?`,
+            WHERE u.id_universidad = ?`,
             [id]
         );
 
@@ -124,12 +124,13 @@ export class UniversityCareersService {
         }
 
         const result = relations[0];
-        return {
-            id: result.id,
-            id_universidad: result.id_universidad,
-            id_carrera: result.id_carrera,
-            requisitos: result.requisitos,
-            puntaje_minimo: result.puntaje_minimo,
+
+        const results = relations.map(relation => ({
+            id: relation.id,
+            id_universidad: relation.id_universidad,
+            id_carrera: relation.id_carrera,
+            requisitos: relation.requisitos,
+            puntaje_minimo: relation.puntaje_minimo,
             universidad: {
                 nombre: result.universidad_nombre,
                 ubicacion: result.universidad_ubicacion,
@@ -138,9 +139,11 @@ export class UniversityCareersService {
             carrera: {
                 nombre: result.carrera_nombre,
                 duracion: result.carrera_duracion,
-                costo_estimado: result.carrera_costo_estimado
+                costo_estimado: relation.carrera_costo_estimado
             }
-        };
+        }));
+
+        return results;
     }
 
     async updateUniversityCareer(relation: UpdateUniversityCareerDTO): Promise<UniversityCareerResponseDTO> {
