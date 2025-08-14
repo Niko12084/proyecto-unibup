@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ubicacion = document.getElementById('universityLocation');
     const ranking = document.getElementById('universityRanking');
     const imagenUrl = document.getElementById('universityURL');
+    const map_url = document.getElementById('universityMapURL');
     const tablaUniversidades = document.querySelector('#universitiesTable tbody');
 
     let universidades = [];
@@ -25,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
             nombre: nombre.value.trim(),
             ubicacion: ubicacion.value.trim(),
             ranking: rankingValue,
-            imagen_url: imagenUrl.value.trim()
+            imagen_url: imagenUrl.value.trim(),
+            map_url: map_url.value.trim()
         };
 
         try {
@@ -77,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${uni.nombre}</td>
                 <td>${uni.ubicacion}</td>
                 <td>${uni.ranking}</td>
-                <td><button class="btn-delete" delete-btn" data-id="${uni.id_universidad}"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                <td><button class="btn-delete" data-id="${uni.id_universidad}"><i class="fas fa-trash-alt"></i> Eliminar</button></td>
             `;
             tablaUniversidades.appendChild(row);
         });

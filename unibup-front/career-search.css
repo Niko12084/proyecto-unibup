@@ -23,7 +23,6 @@ body {
     line-height: 1.6;
 }
 
-
 .search-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -39,24 +38,25 @@ body {
     gap: 20px;
 }
 
-.logo {
+.logo-container {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.logo i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
+.logo-img {
+    height: 120px; 
+    width: auto;
+    margin-right: 20px; 
 }
 
-.logo h1 {
+.logo-container h1 {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--dark-color);
 }
 
-.logo span {
+.logo-container span {
     color: var(--primary-color);
     font-weight: 400;
 }
@@ -149,7 +149,7 @@ body {
 }
 
 .results-container {
-    display: none;
+    display: block;
     animation: fadeIn 0.5s ease-out;
 }
 
@@ -233,6 +233,7 @@ body {
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
+    margin-right: 15px;
 }
 
 .university-card .details-link:hover {
@@ -295,8 +296,105 @@ body {
         grid-template-columns: 1fr;
     }
 }
-    .logo-img {
-    height: 120px; 
-    width: auto;
-    margin-right: 100px; 
-    }
+
+.university-card-simple {
+    padding: 15px;
+    min-height: auto;
+}
+
+.university-card-simple h4 {
+    margin-bottom: 5px;
+}
+
+.university-card-simple .location {
+    margin-top: 5px;
+}
+
+.university-card-simple .ranking {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.links-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.details-link {
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: var(--gray-light);
+    transition: var(--transition);
+}
+.details-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+}
+
+.university-card {
+    padding: 15px;
+}
+/* Estilos para las tarjetas de universidades */
+.university-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #eaeaea;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.university-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.university-card h4 {
+    color: #3a0ca3;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.university-card .ranking {
+    display: block;
+    color: #4361ee;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.university-card .location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.university-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.university-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #4361ee;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.university-link:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.university-link i {
+    font-size: 0.9rem;
+}

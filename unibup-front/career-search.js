@@ -1,181 +1,85 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const API_URL = 'http://localhost:3000/api/v1/universities';
 
-    const careerData = [
-        {
-            career: "Medicina",
-            universities: [
-                {
-                    name: "Universidad Nacional de Colombia",
-                    location: "Bogotá, Medellín, Manizales",
-                    ranking: "Top 1 en Salud",
-                    duration: "12 semestres",
-                    degree: "Médico Cirujano"
-                },
-                {
-                    name: "Universidad de Antioquia",
-                    location: "Medellín",
-                    ranking: "Top 3 en Salud",
-                    duration: "12 semestres",
-                    degree: "Médico"
-                },
-                {
-                    name: "Universidad del Rosario",
-                    location: "Bogotá",
-                    ranking: "Top 5 en Salud",
-                    duration: "12 semestres",
-                    degree: "Médico"
-                }
-            ]
-        },
-        {
-            career: "Ingeniería Civil",
-            universities: [
-                {
-                    name: "Universidad de los Andes",
-                    location: "Bogotá",
-                    ranking: "Top 1 en Ingenierías",
-                    duration: "10 semestres",
-                    degree: "Ingeniero Civil"
-                },
-                {
-                    name: "Universidad Nacional de Colombia",
-                    location: "Bogotá, Medellín, Manizales",
-                    ranking: "Top 2 en Ingenierías",
-                    duration: "10 semestres",
-                    degree: "Ingeniero Civil"
-                },
-                {
-                    name: "Universidad del Valle",
-                    location: "Cali",
-                    ranking: "Top 5 en Ingenierías",
-                    duration: "10 semestres",
-                    degree: "Ingeniero Civil"
-                }
-            ]
-        },
-        {
-            career: "Psicología",
-            universities: [
-                {
-                    name: "Pontificia Universidad Javeriana",
-                    location: "Bogotá, Cali",
-                    ranking: "Top 1 en Psicología",
-                    duration: "10 semestres",
-                    degree: "Psicólogo"
-                },
-                {
-                    name: "Universidad de los Andes",
-                    location: "Bogotá",
-                    ranking: "Top 2 en Psicología",
-                    duration: "10 semestres",
-                    degree: "Psicólogo"
-                },
-                {
-                    name: "Universidad Nacional de Colombia",
-                    location: "Bogotá",
-                    ranking: "Top 3 en Psicología",
-                    duration: "10 semestres",
-                    degree: "Psicólogo"
-                }
-            ]
-        },
-        {
-            career: "Derecho",
-            universities: [
-                {
-                    name: "Universidad Externado de Colombia",
-                    location: "Bogotá",
-                    ranking: "Top 1 en Derecho",
-                    duration: "10 semestres",
-                    degree: "Abogado"
-                },
-                {
-                    name: "Universidad de los Andes",
-                    location: "Bogotá",
-                    ranking: "Top 2 en Derecho",
-                    duration: "10 semestres",
-                    degree: "Abogado"
-                },
-                {
-                    name: "Universidad Nacional de Colombia",
-                    location: "Bogotá",
-                    ranking: "Top 3 en Derecho",
-                    duration: "10 semestres",
-                    degree: "Abogado"
-                }
-            ]
-        }
-    ];
-
-    const careerInput = document.getElementById('careerInput');
+    const universityInput = document.getElementById('universityInput');
     const searchBtn = document.getElementById('searchBtn');
     const resultsContainer = document.getElementById('resultsContainer');
     const resultsTitle = document.getElementById('resultsTitle');
     const resultsCount = document.getElementById('resultsCount');
     const universitiesList = document.getElementById('universitiesList');
 
-    searchBtn.addEventListener('click', searchCareers);
-    careerInput.addEventListener('keypress', function(e) {
-        if(e.key === 'Enter') {
-            searchCareers();
+    let universitiesData = [];
+
+    // Cargar las universidades desde la API
+    async function loadUniversities() {
+        try {
+            const response = await fetch(API_URL);
+            universitiesData = await response.json();
+            displayAllUniversities();
+        } catch (error) {
+            console.error('Error al cargar universidades:', error);
+            resultsTitle.textContent = 'Error al cargar universidades';
+        }
+    }
+
+    searchBtn.addEventListener('click', searchUniversities);
+    universityInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            searchUniversities();
         }
     });
 
-    function searchCareers() {
-        const searchTerm = careerInput.value.trim().toLowerCase();
-        
-        if(!searchTerm) {
-            showAlert('Por favor ingresa una carrera para buscar');
+    function searchUniversities() {
+        const searchTerm = universityInput.value.trim().toLowerCase();
+        if (!searchTerm) {
+            displayAllUniversities();
             return;
         }
-
-        const results = careerData.filter(item => 
-            item.career.toLowerCase().includes(searchTerm)
+        const results = universitiesData.filter(university =>
+            university.nombre.toLowerCase().includes(searchTerm) ||
+            university.ubicacion.toLowerCase().includes(searchTerm)
         );
-
         displayResults(results, searchTerm);
+    }
+
+    function displayAllUniversities() {
+        displayResults(universitiesData, "todas las universidades");
     }
 
     function displayResults(results, searchTerm) {
         universitiesList.innerHTML = '';
-        
-        if(results.length === 0) {
-            resultsContainer.style.display = 'block';
-            resultsTitle.textContent = `No encontramos resultados para "${searchTerm}"`;
-            resultsCount.textContent = '0 universidades';
-            
-            universitiesList.innerHTML = `
-                <div class="no-results">
-                    <i class="fas fa-search"></i>
-                    <h4>No encontramos la carrera que buscas</h4>
-                    <p>Intenta con otro nombre o revisa nuestra lista de universidades</p>
-                </div>
-            `;
-        } else {
-            resultsContainer.style.display = 'block';
-            resultsTitle.textContent = `Resultados para "${results[0].career}"`;
-            resultsCount.textContent = `${results[0].universities.length} universidades`;
 
-            results[0].universities.forEach((university, index) => {
+        if (results.length === 0) {
+            resultsTitle.textContent = `No se encontraron resultados para "${searchTerm}"`;
+            resultsCount.textContent = '';
+            return;
+        }
+
+        resultsContainer.style.display = 'block';
+        resultsTitle.textContent = searchTerm === "todas las universidades"
+            ? "Todas las universidades disponibles"
+            : `Resultados para "${searchTerm}"`;
+        resultsCount.textContent = `${results.length} ${results.length === 1 ? 'universidad' : 'universidades'}`;
+
+        results.forEach((university) => {
             const universityCard = document.createElement('div');
             universityCard.className = 'university-card';
             universityCard.innerHTML = `
-                <h4>${university.name}</h4>
-                <p><strong>Título:</strong> ${university.degree}</p>
-                <p><strong>Duración:</strong> ${university.duration}</p>
-                <p class="location"><i class="fas fa-map-marker-alt"></i> ${university.location}</p>
-                <span class="ranking">${university.ranking}</span>
-                <!-- 🔥 Cambia el href para incluir ?id= -->
-                <a href="university-detail.html?id=${index}" class="details-link">
-                    Ver detalles completos <i class="fas fa-arrow-right"></i>
-                </a>
+                <h4>${university.nombre}</h4>
+                <span class="ranking"><h3>Ranking Nacional</h3> ${university.ranking} </span>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> ${university.ubicacion}</p>
+                <div class="university-links">
+                    <a href="${university.imagen_url}" target="_blank" class="university-link">
+                        <i class="fas fa-globe"></i> Sitio web
+                    </a>
+                    <a href="university-detail.html?id=${university.id_universidad}" class="university-link">
+                        <i class="fas fa-search"></i> Descubrir
+                    </a>
+                </div>
             `;
-                universitiesList.appendChild(universityCard);
-            });
-        }
+            universitiesList.appendChild(universityCard);
+        });
     }
-    function showAlert(message) {
-        alert(message);
-        careerInput.focus();
-    }
+
+    loadUniversities();
 });
