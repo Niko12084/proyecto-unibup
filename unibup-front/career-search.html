@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsqueda de Carreras Universitarias</title>
+    <title>Búsqueda de Universidades</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="career-search.css">
 </head>
 <body>
     <div class="search-container">
         <header class="search-header">
-        <div class="container">
-            <div class="logo-container">
-            <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
-            <h1>BÚSQUEDA <span>RELACIONADA</span></h1>
+            <div class="container">
+                <div class="logo-container">
+                    <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
+                    <h1>BÚSQUEDA <span>DE UNIVERSIDADES</span></h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                </nav>
             </div>
-            <nav class="nav-links">
-                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-            </nav>
         </header>
 
         <main class="search-main">
             <div class="search-box">
-                <h2><i class="fas fa-search"></i> Ingresa la carrera de tu interés</h2>
+                <h2><i class="fas fa-search"></i> Busca universidades</h2>
                 <div class="search-input-container">
-                    <input type="text" id="careerInput" placeholder="Ej: Medicina, Ingeniería Civil, Psicología...">
+                    <input type="text" id="universityInput" placeholder="Ej: Universidad Nacional, Universidad de los Andes...">
                     <button id="searchBtn">Buscar <i class="fas fa-search"></i></button>
                 </div>
             </div>
 
-            <div class="results-container" id="resultsContainer">
-                <div class="results-header">
-                    <h3 id="resultsTitle">Resultados de búsqueda</h3>
+                <div class="results-container" id="resultsContainer">
+                    <div class="results-header">
+                    <h3 id="resultsTitle">Todas las universidades disponibles</h3>
                     <div class="results-count" id="resultsCount"></div>
                 </div>
                 
                 <div class="universities-list" id="universitiesList">
-
                 </div>
             </div>
         </main>

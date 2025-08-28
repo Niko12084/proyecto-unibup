@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const userData = { name,  correo: email, rol: role };
+        const userData = { nombre: name,  correo: email, rol: role };
         if (!isEdit) {
             userData.contrasena = password;
             userData.confirmar_contraseña = confirmPassword;
@@ -130,9 +130,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const user = await response.json();
 
             document.getElementById('userId').value = user.id;
-            document.getElementById('userName').value = user.name;
-            document.getElementById('userEmail').value = user.email;
-            document.getElementById('userRole').value = user.role;
+            document.getElementById('userName').value = user.nombre;
+            document.getElementById('userEmail').value = user.correo;
+            document.getElementById('userRole').value = user.rol;
             document.getElementById('userPassword').value = '';
             document.getElementById('userConfirmPassword').value = '';
 

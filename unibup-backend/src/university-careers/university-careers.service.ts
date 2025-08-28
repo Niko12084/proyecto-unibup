@@ -137,8 +137,8 @@ export class UniversityCareersService {
                 ranking: result.universidad_ranking
             },
             carrera: {
-                nombre: result.carrera_nombre,
-                duracion: result.carrera_duracion,
+                nombre: relation.carrera_nombre,
+                duracion: relation.carrera_duracion,
                 costo_estimado: relation.carrera_costo_estimado
             }
         }));
