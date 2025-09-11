@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: unibup-frontend
-          image: unibup-frontend:latest   # <-- reemplázalo si la subiste a Docker Hub
+          image: unibup-frontend:latest   
           ports:
             - containerPort: 80
           env:
             - name: BACKEND_URL
-              value: "http://backend-service:3000"   # 🔑 Conexión al backend en Kubernetes
+              value: "http://backend-service:3000"   
 ---
 apiVersion: v1
 kind: Service
