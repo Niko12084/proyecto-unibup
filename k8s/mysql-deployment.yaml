@@ -28,7 +28,7 @@ spec:
               mountPath: /var/lib/mysql
       volumes:
         - name: mysql-storage
-          emptyDir: {}   # ⚠️ temporal, en prod se usaría PersistentVolumeClaim
+          emptyDir: {}   
 ---
 apiVersion: v1
 kind: Service

@@ -14,13 +14,12 @@ spec:
     spec:
       containers:
         - name: unibup-backend
-          image: unibup-backend:latest   # <-- reemplázalo si ya subiste tu imagen a Docker Hub
+          image: unibup-backend:latest   
           ports:
             - containerPort: 3000
           env:
             - name: DB_HOST
-              value: "mysql-service"     # 🔑 Nombre del servicio MySQL en Kubernetes
-            - name: DB_PORT
+              value: "mysql-service"     
               value: "3306"
             - name: DB_USER
               value: "root"
