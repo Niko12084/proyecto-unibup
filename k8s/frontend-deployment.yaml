@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unibup-frontend
+  template:
+    metadata:
+      labels:
+        app: unibup-frontend
+    spec:
+      containers:
+        - name: unibup-frontend
+          image: unibup-frontend:latest   # <-- reemplázalo si la subiste a Docker Hub
+          ports:
+            - containerPort: 80
+          env:
+            - name: BACKEND_URL
+              value: "http://backend-service:3000"   # 🔑 Conexión al backend en Kubernetes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: unibup-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer   # <- para exponerlo fuera del clúster
+

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unibup-mysql
+  namespace: unibup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unibup-mysql
+  template:
+    metadata:
+      labels:
+        app: unibup-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root"
+            - name: MYSQL_DATABASE
+              value: "unipub_db"
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-storage
+          emptyDir: {}   # ⚠️ temporal, en prod se usaría PersistentVolumeClaim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: unibup-mysql
+  namespace: unibup
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:
+    app: unibup-mysql

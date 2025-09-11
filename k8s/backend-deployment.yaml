@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unibup-backend
+  template:
+    metadata:
+      labels:
+        app: unibup-backend
+    spec:
+      containers:
+        - name: unibup-backend
+          image: unibup-backend:latest   # <-- reemplázalo si ya subiste tu imagen a Docker Hub
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: "mysql-service"     # 🔑 Nombre del servicio MySQL en Kubernetes
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              value: "rootpassword"
+            - name: DB_NAME
+              value: "unibup_db"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: unibup-backend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
