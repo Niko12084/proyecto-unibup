@@ -81,5 +81,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Inicializar datos
     loadUniversities();
+
+
+    // ============================
+    //     BREADCRUMB NAVIGATION
+    // ============================
+
+    const paginas = {
+        "index.html": "Inicio",
+        "aboutus.html": "Sobre Nosotros",
+        "universitylist.html": "Buscar Universidades",
+        "university-detail.html": "Detalles de Universidad",
+        "university-form.html": "Registrar Universidad",
+        "carrerasforms.html": "Carreras",
+        "users-form.html": "Usuarios"
+    };
+
+    // Detectar la página actual
+    const url = window.location.pathname.split("/").pop() || "index.html";
+
+    // Crear estructura del breadcrumb
+    const breadcrumbContainer = document.getElementById("breadcrumb");
+
+    if (breadcrumbContainer) {
+        breadcrumbContainer.innerHTML = ""; // limpiar si existe
+
+        const homeLink = document.createElement("a");
+        homeLink.href = "index.html";
+        homeLink.textContent = "Inicio";
+        breadcrumbContainer.appendChild(homeLink);
+
+        if (paginas[url] && paginas[url] !== "Inicio") {
+            const separator = document.createElement("span");
+            separator.textContent = " › ";
+            breadcrumbContainer.appendChild(separator);
+
+            const current = document.createElement("span");
+            current.textContent = paginas[url];
+            current.classList.add("current-page");
+            breadcrumbContainer.appendChild(current);
+        }
+    }
 });

@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     mapContainer.src = university?.map_url
 
+    // Actualizar el breadcrumb con el nombre de la universidad
+    const breadcrumbUni = document.getElementById("breadcrumbUniversity");
+        if (breadcrumbUni && university.universidad?.nombre) {
+        breadcrumbUni.innerHTML = `<i class="fas fa-university"></i> ${university.universidad.nombre}`;
+    }
+
     try {
         // Obtener toda la información de la universidad y sus carreras
         const response = await fetch(`http://localhost:3000/api/v1/university-careers/${universityId}`);
