@@ -540,7 +540,11 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
-
+.main-nav a[href*="react-page"] {
+    color: #61dafb; /* azul React */
+    font-weight: 600;
+  }
+  
 @media (max-width: 1200px) {
     .imagen-derecha {
         width: 350px;
