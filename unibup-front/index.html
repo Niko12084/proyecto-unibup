@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIPUB - Tu Futuro Profesional</title>
+    <title>UNIBUP - Tu Futuro Profesional</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -12,12 +12,12 @@
     <header class="glass-header">
         <div class="container">
             <div class="logo-container">
-            <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
-        </div>
+                <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
+            </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="career-search.html"><i class="fas fa-home"></i> Carreras</a></li>
+                    <li><a href="career-search.html"><i class="fas fa-graduation-cap"></i> Carreras</a></li>
                     <li><a href="aboutus.html"><i class="fa-solid fa-comment"></i> Sobre Nosotros</a></li>
                 </ul>
             </nav>
@@ -27,6 +27,21 @@
                         <i class="fas fa-user"></i> Ingresar
                     </button>
                 </form>
+            </div>
+        </div>
+
+        <!-- Menú hamburguesa (solo visible en móvil) -->
+        <div class="mobile-menu">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="career-search.html"><i class="fas fa-graduation-cap"></i> Carreras</a></li>
+                    <li><a href="aboutus.html"><i class="fa-solid fa-comment"></i> Sobre Nosotros</a></li>
+                    <li><a href="login.html"><i class="fas fa-user"></i> Ingresar</a></li>
+                </ul>
             </div>
         </div>
     </header>
@@ -78,5 +93,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="app.js"></script>
+
+    <!-- Script del menú hamburguesa -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('show');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
 </body>
 </html>

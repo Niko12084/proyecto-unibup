@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Carreras - UNIBUP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="career-up.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="university-form.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+                    <span class="nav-text">Registrar</span>
+                </a>
+                
+                <a href="carrerasforms.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="nav-text">Carreras</span>
+                </a>
+
+                <a href="careers-up.html" class="nav-item active">
+                    <div class="nav-icon"><i class="fas fa-link"></i></div>
+                    <span class="nav-text">Gestión de Carreras</span>
+                </a>
+                
+                <a href="users-form.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-users"></i></div>
+                    <span class="nav-text">Usuarios</span>
+                </a>
+
+                <a href="index.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-address-card"></i></div>
+                    <span class="nav-text">Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="page-header">
+                <div class="title-container">
+                    <div class="title-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="title-content">
+                        <h1 class="main-title">Gestión de Carreras</h1>
+                        <p class="title-subtitle">Administra y registra carreras universitarias</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-container">
+                <!-- 🧭 Breadcrumb -->
+                <div class="breadcrumb-container">
+                    <nav class="breadcrumb" aria-label="Migas de pan">
+                        <ol class="breadcrumb-list">
+                            <li class="breadcrumb-item">
+                                <a href="index.html" class="breadcrumb-link">
+                                    <i class="fas fa-home breadcrumb-icon"></i>
+                                    <span class="breadcrumb-text">Inicio</span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <i class="fas fa-graduation-cap breadcrumb-icon"></i>
+                                <span>Gestión de Carreras</span>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <!-- Formulario -->
+                <div class="form-section">
+                    <div class="form-card">
+                        <h2 class="form-title">
+                            <i class="fas fa-plus-circle"></i>
+                            Agregar Nueva Carrera
+                        </h2>
+                        
+                        <form id="careerForm" class="career-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="careerId" class="form-label">
+                                        <i class="fas fa-book"></i>
+                                        ID de la carrera
+                                    </label>
+                                    <input type="text" id="careerId" name="id_carrera" class="form-input" placeholder="Ej: 12345" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="universityId" class="form-label">
+                                        <i class="fas fa-university"></i>
+                                        ID de la universidad
+                                    </label>
+                                    <input type="text" id="universityId" name="id_universidad" class="form-input" placeholder="Ej: 12345" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="requirements" class="form-label">
+                                    <i class="fas fa-list"></i>
+                                    Requisitos de la carrera
+                                </label>
+                                <input type="text" id="requirements" name="requisitos" class="form-input" placeholder="Ej: 'Grado,ICFES/SABER 11'" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="minScore" class="form-label">
+                                    <i class="fas fa-star"></i>
+                                    Puntaje mínimo
+                                </label>
+                                <input type="number" id="minScore" name="puntaje_minimo" class="form-input" min="0" placeholder="250" required>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary btn-large">
+                                    <i class="fas fa-save"></i>
+                                    Guardar Carrera
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-undo"></i>
+                                    Limpiar Formulario
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lista -->
+                <div class="careers-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-list"></i>
+                            Carreras Registradas
+                        </h2>
+                        <div class="section-actions">
+                            <input type="text" id="searchId" class="form-input" placeholder="Buscar por ID">
+                            <button id="searchBtn" class="btn-outline">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID Universidad</th>
+                                <th>ID Carrera</th>
+                                <th>Requisitos</th>
+                                <th>Puntaje Mínimo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="career-up.js"></script>
+</body>
+</html>
