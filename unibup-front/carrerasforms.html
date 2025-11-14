@@ -1,127 +1,234 @@
 <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gestión de Universidades</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="carrerasforms.css">
-    </head>
-    <body>
-        <div class="admin-container">
-            <header class="admin-header">
-                <div class="logo">
-                    <i class="fas fa-university"></i>
-                    <h1>Gestor <span>Universitario</span></h1>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Carreras - UNIBUP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="carrerasforms.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Barra lateral pegada al borde -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
                 </div>
-                <nav class="admin-nav">
-                    <a href="universities-list.html" class="active"><i class="fas fa-edit"></i> Universidades</a>
-                    <a href="carrerasforms.html" class="active"><i class="fas fa-graduation-cap"></i> Carreras</a>
-                    <a href="users-form.html" class="active"><i class="fas fa-users"></i> Usuarios</a>
-                    <a href="index.html" class="active"><i class="fas fa-address-card"></i> Cerrar Sesion</a>
-                </nav>
+            </div>
+            
+             <nav class="sidebar-nav">
+                <a href="university-form.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+                    <span class="nav-text">Registrar</span>
+                </a>
+                
+                <a href="carrerasforms.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="nav-text">Carreras</span>
+                </a>
+
+                <a href="career-up.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-link"></i></div>
+                    <span class="nav-text">Gestión de Carreras</span>
+                </a>
+                
+                <a href="users-form.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-users"></i></div>
+                    <span class="nav-text">Usuarios</span>
+                </a>
+
+                <a href="index.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-address-card"></i></div>
+                    <span class="nav-text">Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="page-header">
+                <div class="title-container">
+                    <div class="title-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="title-content">
+                        <h1 class="main-title">Gestión de Carreras</h1>
+                        <p class="title-subtitle">Registra y administra las carreras universitarias</p>
+                    </div>
+                </div>
             </header>
 
-            <main class="admin-main">
-                <div class="form-container">
-                <h2><i class="fas fa-plus-circle"></i> FORMULARIO INGRESAR CARRERAS</h2>
+            <div class="content-container">
+                <div class="breadcrumb-container">
+                    <nav class="breadcrumb" aria-label="Migas de pan">
+                        <ol class="breadcrumb-list">
+                            <li class="breadcrumb-item">
+                                <a href="universities-list.html" class="breadcrumb-link">
+                                    <i class="fas fa-home breadcrumb-icon"></i>
+                                    <span class="breadcrumb-text">Consulta Universidades</span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <i class="fas fa-book breadcrumb-icon"></i>
+                                <span>Registro Carreras</span>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
 
-                <form id="carreraForm" class="carrera-form">
+                <!-- Formulario de registro -->
+                <div class="form-section">
+                    <div class="form-card">
+                        <h2 class="form-title">
+                            <i class="fas fa-plus-circle"></i>
+                            Registrar Nueva Carrera
+                        </h2>
+                        
+                        <form id="carreraForm" class="carrera-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="universidadName" class="form-label">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        Nombre de la Carrera
+                                    </label>
+                                    <input type="text" id="universidadName" class="form-input" placeholder="Ingrese el nombre de la carrera" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="duracion" class="form-label">
+                                        <i class="fas fa-clock"></i>
+                                        Duración
+                                    </label>
+                                    <input type="text" id="duracion" class="form-input" placeholder="Ej: 4 años, 8 semestres" required>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="universidadName">Nombre de la Carrera </label>
-                        <input type="text" id="universidadName" class="form-control" placeholder="Ingrese el nombre de la universidad" required>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="costoEstimado" class="form-label">
+                                        <i class="fas fa-dollar-sign"></i>
+                                        Costo Estimado
+                                    </label>
+                                    <input type="text" id="costoEstimado" class="form-input" placeholder="Ej: $2,000,000 por semestre" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="universidad" class="form-label">
+                                        <i class="fas fa-university"></i>
+                                        Universidad
+                                    </label>
+                                    <select id="universidad" class="form-select" required>
+                                        <option value="">Seleccione una universidad</option>
+                                        <option value="1">Universidad Nacional de Colombia</option>
+                                        <option value="2">Universidad de los Andes</option>
+                                        <option value="3">Universidad Javeriana</option>
+                                        <option value="4">Universidad del Rosario</option>
+                                        <option value="5">Universidad Externado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="descripcion" class="form-label">
+                                    <i class="fas fa-file-alt"></i>
+                                    Descripción
+                                </label>
+                                <textarea id="descripcion" class="form-textarea" placeholder="Ingrese la descripción de la carrera..." rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary btn-large">
+                                    <i class="fas fa-save"></i>
+                                    Guardar Carrera
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-undo"></i>
+                                    Limpiar Formulario
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lista de carreras registradas -->
+                <div class="careers-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-list"></i>
+                            Carreras Registradas
+                        </h2>
+                        <div class="section-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="searchInput" class="search-input" placeholder="Buscar carrera o universidad...">
+                            </div>
+                            <button id="exportBtn" class="btn-outline">
+                                <i class="fas fa-download"></i>
+                                Exportar
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="Descripción">Descripción</label>
-                        <textarea id="descripción" class="form-control" placeholder="Ingrese la descripción" required></textarea>
+                    <div class="table-container">
+                        <table id="careersTable" class="careers-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Duración</th>
+                                    <th>Costo Estimado</th>
+                                    <th>Universidad</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Los datos se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="form-group">
-                        <label for="duracion">Duración</label>
-                        <input type="text" id="duracion" class="form-control" placeholder="Ej: 4 años" required>
+                    <div class="pagination-container">
+                        <div class="pagination-info" id="paginationInfo">Mostrando 1-10 de 50 carreras</div>
+                        <div class="pagination-controls">
+                            <button id="prevBtn" class="btn-outline" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                                Anterior
+                            </button>
+                            <button id="nextBtn" class="btn-outline">
+                                Siguiente
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="costo estimado">Costo estimado</label>
-                        <input type="text" id="costo estimado" class="form-control" placeholder="Ej: $2000" required>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-save"></i> GUARDAR CAMBIOS
-                        </button>
-                        <button type="reset" class="btn-reset">
-                            <i class="fas fa-eraser"></i> LIMPIAR FORMULARIO
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-<div class="results-container" id="resultsContainer">
-    <div class="results-header">
-        <h3><i class="fas fa-graduation-cap"></i> CARRERAS REGISTRADAS</h3>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar carrera o universidad..." 
-                   aria-label="Campo de búsqueda de carreras">
-            <button id="searchBtn" aria-label="Buscar"><i class="fas fa-search"></i></button>
-            <button id="clearSearchBtn" class="secondary-btn" aria-label="Limpiar búsqueda">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    
-    <div class="table-responsive">
-        <table id="universitiesTable" class="data-table">
-            <thead>
-                <tr>
-                    <th data-sort="id">ID </th>
-                    <th data-sort="name">Nombre </th>
-                    <th>Descripción</th>                                    
-                    <th data-sort="duration">Duración </th>
-                    <th data-sort="cost">Costo estimado </th>
-                    <th data-sort="date">Fecha creación </th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Datos se llenarán con JavaScript -->
-                <tr class="empty-row">
-                    <td colspan="7">No hay carreras registradas</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="table-footer">
-        <div class="pagination-info">
-            Mostrando <span id="currentCount">0</span> de <span id="totalCount">0</span> carreras
-        </div>
-        <div class="pagination-controls">
-            <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
-            <span id="pageInfo">Página 1</span>
-            <button id="nextPage" disabled><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-</div>
-
-            </main>
-        </div>
-
-        <!-- Modal para confirmar eliminación -->
-        <div id="confirmModal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación</h3>
-                <p>¿Estás seguro que deseas eliminar esta universidad?</p>
-                <div class="modal-actions">
-                    <button id="confirmDelete" class="btn-danger">Eliminar</button>
-                    <button id="cancelDelete" class="btn-secondary">Cancelar</button>
                 </div>
             </div>
-        </div>
+        </main>
+    </div>
 
-        <script src="carrerasforms.js"></script>
-    </body>
-    </html>
+    <!-- Modal para confirmar eliminación -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Confirmar Eliminación
+            </h3>
+            <p>¿Estás seguro que deseas eliminar esta carrera?</p>
+            <div class="modal-actions">
+                <button id="confirmDelete" class="btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Eliminar
+                </button>
+                <button id="cancelDelete" class="btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="carrerasforms.js"></script>
+</body>
+</html>

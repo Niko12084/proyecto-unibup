@@ -3,62 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Universidades</title>
+    <title>Consulta de Universidades - UNIBUP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="universities-list.css">
 </head>
 <body>
-    <div class="admin-container">
-        <header class="admin-header">
-            <div class="logo">
-                <i class="fas fa-university"></i>
-                <h1>Consulta <span>Universidades</span></h1>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="images/logo unibup.png" alt="Logo UNIBUP" class="logo-img">
+                </div>
             </div>
-            <nav class="admin-nav">
-                <a href="university-form.html" class="active"><i class="fas fa-plus-circle"></i> Registrar</a>
-                <a href="carrerasforms.html" class="active"><i class="fas fa-graduation-cap"></i> Carreras</a>
-                <a href="users-form.html" class="active"><i class="fas fa-users"></i> Usuarios</a>
-                <a href="career-up.html" class="active"><i class="fas fa-link"></i> Gestión de Carreras</a>
-                <a href="index.html" class="active"><i class="fas fa-address-card"></i> Cerrar Sesion</a>
-            </nav>
-        </header>
-
-        <main class="admin-main">
-            <div class="search-container">
-                <h2><i class="fas fa-list"></i> TODAS LAS UNIVERSIDADES</h2>
-                <p class="subtitle">Selecciona la universidad a consultar</p>
+            
+            <nav class="sidebar-nav">
+                <a href="university-form.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+                    <span class="nav-text">Registrar</span>
+                </a>
                 
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Buscar universidad...">
-                    <button id="searchBtn"><i class="fas fa-search"></i> buscar</button>
-                </div>
-            </div>
+                <a href="carrerasforms.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="nav-text">Carreras</span>
+                </a>
 
-            <div class="results-container">
-                <div class="table-container">
-                    <table id="universitiesTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Ubicación</th>
-                                <th>Ranking</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                <a href="career-up.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-link"></i></div>
+                    <span class="nav-text">Gestión de Carreras</span>
+                </a>
+                
+                <a href="users-form.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-users"></i></div>
+                    <span class="nav-text">Usuarios</span>
+                </a>
+
+                <a href="index.html" class="nav-item">
+                    <div class="nav-icon"><i class="fas fa-address-card"></i></div>
+                    <span class="nav-text">Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="page-header">
+                <div class="title-container">
+                    <div class="title-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="title-content">
+                        <h1 class="main-title">Consulta de Universidades</h1>
+                        <p class="title-subtitle">Explora y gestiona todas las universidades registradas</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-container">
+                <div class="breadcrumb-container">
+                    <nav class="breadcrumb" aria-label="Migas de pan">
+                        <ol class="breadcrumb-list">
+                            <li class="breadcrumb-item">
+                                <a href="universities-list.html" class="breadcrumb-link">
+                                    <i class="fas fa-home breadcrumb-icon"></i>
+                                    <span class="breadcrumb-text">Consulta Universidades</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
 
-                <div class="pagination-container">
-                    <div class="pagination-info" id="paginationInfo">1 de 10</div>
-                    <div class="pagination-controls">
-                        <button id="prevBtn" disabled><i class="fas fa-chevron-left"></i> Anterior</button>
-                        <button id="nextBtn">Siguiente <i class="fas fa-chevron-right"></i></button>
+                <!-- Panel de búsqueda -->
+                <div class="search-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">
+                            <i class="fas fa-search"></i>
+                            Buscar Universidades
+                        </h2>
+                    </div>
+                    
+                    <div class="search-box">
+                        <div class="search-input-group">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nombre, ubicación...">
+                        </div>
+                        <button id="searchBtn" class="btn-primary">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultados -->
+                <div class="results-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-list"></i>
+                            Universidades Registradas
+                        </h2>
+                        <div class="section-actions">
+                            <button id="exportBtn" class="btn-outline">
+                                <i class="fas fa-download"></i>
+                                Exportar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table id="universitiesTable" class="universities-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Ubicación</th>
+                                    <th>Ranking</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Los datos se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination-container">
+                        <div class="pagination-info" id="paginationInfo">Mostrando 1-10 de 50 universidades</div>
+                        <div class="pagination-controls">
+                            <button id="prevBtn" class="btn-outline" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                                Anterior
+                            </button>
+                            <button id="nextBtn" class="btn-outline">
+                                Siguiente
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Modal para detalles de universidad -->
+    <div class="modal" id="universityModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title">
+                <i class="fas fa-university"></i>
+                Detalles de la Universidad
+            </h3>
+            <div class="modal-body" id="modalBody">
+                <!-- Contenido dinámico del modal -->
+            </div>
+        </div>
     </div>
 
     <script src="universities-list.js"></script>

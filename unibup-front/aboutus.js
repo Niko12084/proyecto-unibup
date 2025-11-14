@@ -1,40 +1,69 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Datos simulados (en producción vendrían de una API)
     const statsData = {
-        universities: 0,
-        programs: 0,
-        cities: 0
+        universities: 30,
+        programs: 30,
+        cities: 40
     };
 
     const teamData = [
         {
-            name: "María González",
-            role: "Directora Educativa",
-            bio: "Experta en pedagogía con 15 años en educación superior. Doctora en Ciencias de la Educación.",
-            initial: "M",
-            color: "#4361ee"
+            name: "Nicolas Daza Redondo",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "Con ganas de acabar el semetre hoy mismo.",
+            initial: "N",
+            color: "#031254ff"
         },
         {
-            name: "Carlos Rodríguez",
-            role: "Ingeniero de Datos",
-            bio: "Especialista en procesamiento de información educativa. Magister en Ciencia de Datos.",
-            initial: "C",
-            color: "#3a0ca3"
+            name: "Ivan Felipe Baquero Morales",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "Ha tenido días mejores pero sigue adelante",
+            initial: "I",
+            color: "#000000ff"
         },
         {
-            name: "Ana López",
-            role: "Desarrolladora AI",
-            bio: "Enfocada en algoritmos de recomendación educativa. Investigadora en Machine Learning.",
-            initial: "A",
-            color: "#f72585"
-        },
-        {
-            name: "David Martínez",
-            role: "Diseñador UX/UI",
-            bio: "Creador de experiencias intuitivas para nuestros usuarios. Especialista en diseño centrado en el usuario.",
+            name: "Daniel Ricardo Ballen Rueda",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "",
             initial: "D",
-            color: "#4cc9f0"
+            color: "#1e3af3ff"
+        },
+        {
+            name: "Cristian Manuel Rivera Trujillo",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "",
+            initial: "C",
+            color: "#f52020ff"
+        },
+        {
+            name: "Angie Valentina Gasca Novoa",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "",
+            initial: "A",
+            color: "#ff4d00ff"
+        },
+        {
+            name: "Angie Dayana Retiz Guerrero",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "",
+            initial: "A",
+            color: "#07f623ff"
+        },
+        {
+            name: "Lucas Guzman Quijano",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "",
+            initial: "L",
+            color: "#07f6deff"
+        },
+        {
+            name: "Manuel Felipe Galeano Barragan",
+            role: "Estudiante De sexto semestre de Ingeniería de Sistemas",
+            bio: "",
+            initial: "M",
+            color: "#551b1bff"
         }
+        
     ];
 
     // Animación de contadores
